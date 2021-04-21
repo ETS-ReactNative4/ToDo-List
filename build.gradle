@@ -1,0 +1,32 @@
+plugins {
+  	id "com.moowork.node" version "1.2.0"
+    id "org.ysb33r.nodejs.cmdline" version "0.10.0-alpha.1"  
+}
+final def appName = "ToDo-List"
+apply plugin:'com.moowork.node'
+apply plugin: "org.ysb33r.nodejs.cmdline"
+ 
+node {
+  	version='12.4.0'
+  	download=false
+}
+task installCreateReactApp(type: NpmTask) {
+    	args = ['install', 'create-react-app', '--no-save']
+}
+task createApp(dependsOn: 'installCreateReactApp', type: NodeTask){
+  	description 'Create React app'
+  	script = file("node_modules/create-react-app/createReactApp")
+  	args = [appName]
+}
+task bundle(type: NpmTask, dependsOn: npmInstall) {
+     	args = ['run','build']
+}
+task run(type: NpmTask) {
+ 	args = ['start']
+}
+task cypress(type: NpmTask){
+    args=['install','cypress']
+}
+task test(type: NpmTask, dependsOn: cypress){
+    args=['run','check']
+}
