@@ -1,11 +1,10 @@
 plugins {
   	id "com.moowork.node" version "1.2.0"
-    id "org.ysb33r.nodejs.cmdline" version "0.10.0-alpha.1"  
+    
 }
 final def appName = "ToDo-List"
 apply plugin:'com.moowork.node'
-apply plugin: "org.ysb33r.nodejs.cmdline"
- 
+
 node {
   	version='12.4.0'
   	download=false
