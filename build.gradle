@@ -29,4 +29,3 @@ task cypress(type: NpmTask){
 task test(type: NpmTask, dependsOn: cypress){
     args=['run','check']
 }
-//added
